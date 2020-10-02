@@ -283,7 +283,10 @@ footer {
   text-align: center;
 }
 
-img {vertical-align: middle; } + em { 	display: block; text-align: center; } //image captions
+img[src*='#center'] { 
+  display: block;
+  margin: auto;
+} + em { 	display: block; text-align: center; } //image captions
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
