@@ -209,22 +209,3 @@ Scott, J. H., Thompson, M. P., & Calkin, D. E. (2013). A wildfire risk assessmen
 2020 North American Wildfire Season. (2020, September 30). Retrieved September 30, 2020, from https://disasterphilanthropy.org/disaster/2020-california-wildfires/
 
 ***The first 3 sources are from peer-reviewed journals
-
-
-
-### Potential Results
-
-For the binary classification problem, we expect to obtain a high degree of accuracy, taking cue from the results obtained by Sayad et al. on predictive modelling of wildfires using the same dataset. For the subsequent risk assessment problem, we expect relative humidity, wind speed, temperature, and rain to emerge as strongly related to damage assessment.
-
-If the model is robust, we hope to be able to generalize these results for locations outside the United States. 
-
-### Discussion
-
-We recognize that the datasets we use may be too small for us to obtain accurate results. In that case, we will use a third [dataset](https://www.kaggle.com/rtatman/188-million-us-wildfires) and web-scrape for the humidity, temperature, forest cover, etc. features that we will need. 
- 
-Another potential difficulty faced by our model would be to capture the years of time gap between two forest fires in the same region accounting for the natural phenomenon of forest regrowth. We may be able to improve this by supplementing our training dataset with additional information such as the last occurence of a wildfire at a particular location.
- 
-Finally, historic climate conditions may not be accurate given climate change and changing weather conditions, as alluded to in our introduction. Thus, we may look into extrapolating current climate change patterns to more accurately supplement our inputs.
- 
-The results from this project can be used to assist the EPA with forecasting the probability of wildfires in particular locations to take proactive measures to stop or mitigate the spread of the fires. In the case that a fire occurs, using the results from the intensity model, environmental organizations and firefighters will be able to gather appropriate resources to stop the spread further.
- 
