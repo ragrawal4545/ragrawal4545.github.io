@@ -5,7 +5,7 @@ permalink: /cs4641/midterm
 ---
 
 # Introduction
-![\Large R^2](https://latex.codecogs.com/svg.latex?R^2) 
+ 
 In North America, at the end of September 2020, acres burned by wildfires exceeded the 10-year average by 1.3 million. Wildfires present many risks, including fatalities, property damage, secondary explosions at industrial plants, and environmental damage. As global warming accelerates, causing temperatures to rise and extreme weather events to occur more often, wildfires are becoming more frequent, intense, and costly. A pressing need exists to enhance risk assessment capabilities and predict attributes of wildfires to achieve better containment. Remote sensing data, as well as information about past wildfires, meteorological conditions, and vegetation, can be used to monitor, contain, and prevent wildfires as well as predict occurrences and probable paths.
 
 # Problem Definition 
@@ -59,7 +59,7 @@ Furthermore, Sayad et al obtained high accuracy values using MLP and SVMs using 
 
 ## Fire Risk Assessment Task 
 
-**Dataset balancing:** The dataset is heavily skewed due to the many instances where the area burned equals 0 hectares. We removed these 50% of instances for all the models to improve performance, as well as the outliers for the neural network model, which were rows with burned area greater than 200. However, removing instances from the dataset where 0 hectares were burned does not appear to improve any of the models. In fact, the R2 score for the regression models decreased when removing data points where ‘area’ = 0. 
+**Dataset balancing:** The dataset is heavily skewed due to the many instances where the area burned equals 0 hectares. We removed these 50% of instances for all the models to improve performance, as well as the outliers for the neural network model, which were rows with burned area greater than 200. However, removing instances from the dataset where 0 hectares were burned does not appear to improve any of the models. In fact, the ![\Large R^2](https://latex.codecogs.com/svg.latex?R^2) score for the regression models decreased when removing data points where ‘area’ = 0. 
 
 **Feature Selection:**
  
@@ -114,7 +114,7 @@ Most fires burned less than 400 hectares. This dataset includes two outlier fire
 
 (iii) Sequential Neural Network. For this midterm report, we arbitrarily chose a single type of network to train.
 
-**Model Assessment:** The regression metrics we used to validate the regression model were mean squared error (MSE), the R2 coefficient, and the adjusted R2 coefficient. The K-NN and Sequential NN models were judged using RMSE values. Additionally, sample user inputs were given to determine what would be the predicted value.
+**Model Assessment:** The regression metrics we used to validate the regression model were mean squared error (MSE), the ![\Large R^2](https://latex.codecogs.com/svg.latex?R^2) coefficient, and the adjusted ![\Large R^2](https://latex.codecogs.com/svg.latex?R^2) coefficient. The K-NN and Sequential NN models were judged using RMSE values. Additionally, sample user inputs were given to determine what would be the predicted value.
 
 **Model Hyperparameter Tuning:** For K-NN, we used Sklearn’s GridSearchCV to determine the best K value to implement and additionally plotted the RMSE values for different K’s to validate the accuracy of our K value. For the Sequential NN, we manually experimented with varying number of hidden layers and number of neurons in each layer, as well as changing the activation functions.
 
@@ -138,12 +138,12 @@ Performance of the GNB model with tuned hyperparameters is shown in the figure b
 ### MLP Classifier
 
 Performance of the MLP classifier model with tuned hyperparameters is shown in the figure below, and discussed later.
-{% include image.html url="\images\mlp.png" description="Fig 2. MLP Classifer: Learning curve, scalability, and model performance." %}
+{% include image.html url="\images\mlp.png" description="Fig 3. MLP Classifer: Learning curve, scalability, and model performance." %}
 
 ### SVM Classifier
 
 Performance of the SVM classifier model with tuned hyperparameters is shown in the figure below, and discussed later.
-{% include image.html url="\images\svm.png" description="Fig 2. SVM Classifer: Learning curve, scalability, and model performance." %}
+{% include image.html url="\images\svm.png" description="Fig 4. SVM Classifer: Learning curve, scalability, and model performance." %}
 
 ## Fire Risk Assessment Task 
 
@@ -159,7 +159,7 @@ The following metrics were found for each model used in our regression analysis.
 
 {% include image.html url="\images\regression_table.png" description="Table 3. Results obtained for each regression model that used different features as used in the fire risk assessment task." %}
 
-{% include image.html url="\images\regression_results.png" description="Fig 5. Regression Model Analysis Table using Backward Elimination for subset selection. In the table, a star under a feature means it is included in the model on that row. The adjusted R2 statistic for each model is included in the table to aid evaluation." %}
+{% include image.html url="\images\regression_results.png" description="Fig 5. Regression Model Analysis Table using Backward Elimination for subset selection. In the table, a star under a feature means it is included in the model on that row. The adjusted ![\Large R^2](https://latex.codecogs.com/svg.latex?R^2) statistic for each model is included in the table to aid evaluation." %}
 
 ### K-NN
 
@@ -189,9 +189,9 @@ We begin with evaluating our linear regression models. All evaluation metrics ar
  
 The leaps package in R was used to deploy Backward Elimination to select the best subsets of features when the number of features used equals 1 through 8. During each step, R picks the most statistically significant features to include in the model. Each additional model includes one more feature than the previous model. Using Backward Elimination, the most statistically significant model uses only temperature as a predictor (see table in results section). 
 
-Finally, we experimented with combinations of features based on the visualizations and the table provided by Backward Elimination subset selection. In a model using ‘temp’ as its only feature, squaring the ‘temp’ feature results in a slightly better adjusted R2 statistic of 0.00902. Squaring other features does not appear to enhance the model.
+Finally, we experimented with combinations of features based on the visualizations and the table provided by Backward Elimination subset selection. In a model using ‘temp’ as its only feature, squaring the ‘temp’ feature results in a slightly better adjusted ![\Large R^2](https://latex.codecogs.com/svg.latex?R^2) statistic of 0.00902. Squaring other features does not appear to enhance the model.
 
-None of the models have a large enough adjusted R2 statistic to be considered beneficial, so we decided to focus on other selected models. 
+None of the models have a large enough adjusted ![\Large R^2](https://latex.codecogs.com/svg.latex?R^2) statistic to be considered beneficial, so we decided to focus on other selected models. 
 
 For K-NN, we saw (from Fig 6) that the RMSE is lower in the one where only 5 selected features were used when compared to the initial 12 based on the LassoCV Feature Selection. However, despite selecting the best features the KNN model is unable to predict accurate values for the burned area.
 
