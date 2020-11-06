@@ -18,7 +18,7 @@ Given a particular US location and a future time (month and year), we will (i) p
 
 For this prediction task, we chose to use data for a fixed location that captures information on the state of vegetation and weather. The state of vegetation and weather is more frequently and arguably accurately captured by satellite imagery data. That way, given a location and future date, we can obtain location conditions on that date as true inputs into the model and obtain a yes or no prediction. 
 
-For training, we began with a pre-cleaned and labelled [dataset](https://github.com/ouladsayadyounes/WildFires/blob/master/WildFires_DataSet.csv) that contains parameters extracted from [MODIS] (https://modis.gsfc.nasa.gov/) satellite data for a central region of Canada. This original dataset contained three features (described more below) and labels that categorized datapoints as either ‘fire’ or ‘no_fire’. Of the three parameters in the dataset, we chose two: 
+For training, we began with a pre-cleaned and labelled [dataset](https://github.com/ouladsayadyounes/WildFires/blob/master/WildFires_DataSet.csv) that contains parameters extracted from [MODIS](https://modis.gsfc.nasa.gov/) satellite data for a central region of Canada. This original dataset contained three features (described more below) and labels that categorized datapoints as either ‘fire’ or ‘no_fire’. Of the three parameters in the dataset, we chose two: 
 
 (i) Normalized Difference Vegetation Index (NDVI) originally extracted from dataset [MOD13Q1](https://lpdaac.usgs.gov/products/mod13q1v006/), a vegetation index for crops derived from infrared remote sensing that estimates the depth of surface vegetation (canopies). Resultant values lie between 0 and 1, where 0 indicates very sparse vegetation and 1 indicates dense vegetation. We chose NDVI specifically because it also indicates whether a crop is dry or wet, which affects the flammability.
 
@@ -33,7 +33,7 @@ To obtain this training data, original satellite image data was translated from 
 
 Data collection for the fire risk assessment task was more involved. This task involves estimating the overall damage of the fire, if our first model has predicted there will be a fire. For this, we found a second [dataset](https://www.kaggle.com/elikplim/forest-fires-data-set)  with which we trained a model to learn the relationship between features like month, temperature, humidity, rain, wind speed, etc (input) and the area of burned land (output). 
 
-To clean the data, we used Min-Max scaling to bring the variables to the same scale, which prevented the algorithm from being affected by the magnitude of the different features. In order to improve symmetry and reduce skewness, we applied the logarithm model y = ln(x+1) on the burned area column to improve results for right skewed targets [1](http://www3.dsi.uminho.pt/pcortez/fires.pdf).
+To clean the data, we used Min-Max scaling to bring the variables to the same scale, which prevented the algorithm from being affected by the magnitude of the different features. In order to improve symmetry and reduce skewness, we [applied](http://www3.dsi.uminho.pt/pcortez/fires.pdf) the logarithm model y = ln(x+1) on the burned area column to improve results for right skewed targets.
 
 # Methods
 
@@ -45,8 +45,11 @@ To clean the data, we used Min-Max scaling to bring the variables to the same sc
 **Train-test split:** We trained our models on 70% of the examples and tested on 30%. 
 
 **Model Experimentation:** In the time to this report, we experimented with and tuned three separate binary classification models in sklearn. 
+
 (i) Gaussian Naive Bayes: We chose this because GNB classifiers are easy to construct and interpret, and it does not require complicated iterative hyperparameters.
+
 (ii) Multi-layer perceptron classifier: We chose to use a Neural Network because of their widespread use in classification problems. NNs are also able to work well even with incomplete knowledge, and can parallelize work. 
+
 (iii) Support Vector Machine: We chose this because it typically is regarded as one of the most accurate classification methods.
 Furthermore, Sayad et al obtained high accuracy values using MLP and SVMs using the original dataset.
 
@@ -60,8 +63,7 @@ Furthermore, Sayad et al obtained high accuracy values using MLP and SVMs using 
 
 **Feature Selection:**
  
-**(i) Visual Analysis**
-We began by creating basic scatter plots and histograms to visualize the relationship between each independent variable and our dependent variable, area burned (in hectares). Seaborn was utilized to observe the covariances between the features. In order to create the covariance matrix, scikit-learn’s StandardScaler preprocessing to subtract the mean from each feature and scale to the unit variance of that feature. These visualizations (seen below in Fig 0(a)) helped us better understand the dataset so we could determine which features to consider and which models might work best with our data. 
+**(i) Visual Analysis:** We began by creating basic scatter plots and histograms to visualize the relationship between each independent variable and our dependent variable, area burned (in hectares). Seaborn was utilized to observe the covariances between the features. In order to create the covariance matrix, scikit-learn’s StandardScaler preprocessing to subtract the mean from each feature and scale to the unit variance of that feature. These visualizations (seen below in Fig 0(a)) helped us better understand the dataset so we could determine which features to consider and which models might work best with our data. 
 
 As a result, we observed several useful correlations in our data.
 
@@ -73,7 +75,7 @@ From above, temperature appears highly correlated with FFMC, FMC, DC, ISI. DMC a
 
 Month appears to be correlated with the frequency of fires occurring and the acreage burned (Fig 0 (b)). The majority of the fires in the dataset occur during the summer months of August and September. These months also appear to produce fires that burn greater areas of land than the fires that occur in all other months. 
 
-{% include image.html url="\images\freq_fire_day.png" description="Fig 0 (c). Day appears to be correlated with the frequency of fires occurring and the acreage burned." %}
+{% include image.html url="\images\freq_fires_day.png" description="Fig 0 (c). Day appears to be correlated with the frequency of fires occurring and the acreage burned." %}
 
 Frequency of fires and damage, assessed by area burned, do not appear to vary significantly by day of the week. 
 
@@ -96,19 +98,20 @@ Occurrences of fires and acres burned both appear correlated to rainfall. Most f
  
 Most fires burned less than 400 hectares. This dataset includes two outlier fires (data points) that both burned more than 700 hectares.
 
-**(ii) Backward Elimination**
-We used Backward Elimination to select the best subsets of features in the linear regression model, as explained further in the Results section. 
+**(ii) Backward Elimination:** We used Backward Elimination to select the best subsets of features in the linear regression model, as explained further in the Results section. 
 
-**(iii) LassoCV Feature Selection**
-For the KNN model we used the LassoCV feature selection model which returned the 5 most prominent features as DC, X, Y, month, and day. We then tried to predict the importance of these features by using the SelectKBest model to calculate the p-values for the features and then convert the p-values to scores by taking their negative log. Below you can see the graph of features and how their scores faired:
+**(iii) LassoCV Feature Selection:** For the KNN model we used the LassoCV feature selection model which returned the 5 most prominent features as DC, X, Y, month, and day. We then tried to predict the importance of these features by using the SelectKBest model to calculate the p-values for the features and then convert the p-values to scores by taking their negative log. Below you can see the graph of features and how their scores faired:
 
 {% include image.html url="\images\lasso_cv.png" description="Fig 1. Scores of each selected feature using LassoCV feature selection." %}
 
 **Train-test split:** We trained our model on 70% of the data points and tested it on 30% of the data points. 
 
 **Model Experimentation:** We used 3 different models - linear regression, KNN, and neural net to predict the burned area from the aforementioned features that are described below:
+
 (i) Regression: Using R’s leaps package and Python’s scikit-learn package, we experimented with feature selection for the regression model using matplotlib visual analysis and R’s Backward Elimination best subset selection method. We trained three different linear regression models of different sets of features as well, (a) full features, (b) reduced features using visual analysis, and (c) reduced features using both visual analysis & binary rainfall values. 
+
 (ii) K-NN Algorithm.
+
 (iii) Sequential Neural Network. For this midterm report, we arbitrarily chose a single type of network to train.
 
 **Model Assessment:** The regression metrics we used to validate the regression model were mean squared error (MSE), the R2 coefficient, and the adjusted R2 coefficient. The K-NN and Sequential NN models were judged using RMSE values. Additionally, sample user inputs were given to determine what would be the predicted value.
@@ -127,7 +130,7 @@ In terms of true/false positives/negative rates, we noticed that the MLP and SVM
 
 Below are the graphs and results obtained from each of the models:
 
-# GNB CLassifer
+# GNB Classifer
 
 Performance of the GNB model with tuned hyperparameters is shown in the figure below, and discussed later.
 {% include image.html url="\images\gnb.png" description="Fig 2. GNB: Learning curve, scalability, and model performance." %}
