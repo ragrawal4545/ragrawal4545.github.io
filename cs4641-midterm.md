@@ -116,7 +116,7 @@ Most fires burned less than 400 hectares. This dataset includes two outlier fire
 
 **Model Assessment:** The regression metrics we used to validate the regression model were mean squared error (MSE), the R2 coefficient, and the adjusted R2 coefficient. The K-NN and Sequential NN models were judged using RMSE values. Additionally, sample user inputs were given to determine what would be the predicted value.
 
-**Model Hyperparameter Tuning:** For K-NN, we used Sklearn’s GridSearchCV to determine the best K value to implement and additionally plotted the RMSE values for different K’s to validate the accuracy of our K value. For the Sequential NN, we manually experimented with varying number of hidden layers and number of neurons in each layer, as well as changing the activation functions
+**Model Hyperparameter Tuning:** For K-NN, we used Sklearn’s GridSearchCV to determine the best K value to implement and additionally plotted the RMSE values for different K’s to validate the accuracy of our K value. For the Sequential NN, we manually experimented with varying number of hidden layers and number of neurons in each layer, as well as changing the activation functions.
 
 # Results
 
@@ -130,17 +130,17 @@ In terms of true/false positives/negative rates, we noticed that the MLP and SVM
 
 Below are the graphs and results obtained from each of the models:
 
-# GNB Classifer
+### GNB Classifer
 
 Performance of the GNB model with tuned hyperparameters is shown in the figure below, and discussed later.
 {% include image.html url="\images\gnb.png" description="Fig 2. GNB: Learning curve, scalability, and model performance." %}
 
-# MLP Classifier
+### MLP Classifier
 
 Performance of the MLP classifier model with tuned hyperparameters is shown in the figure below, and discussed later.
 {% include image.html url="\images\mlp.png" description="Fig 2. MLP Classifer: Learning curve, scalability, and model performance." %}
 
-# SVM Classifier
+### SVM Classifier
 
 Performance of the SVM classifier model with tuned hyperparameters is shown in the figure below, and discussed later.
 {% include image.html url="\images\svm.png" description="Fig 2. SVM Classifer: Learning curve, scalability, and model performance." %}
@@ -153,7 +153,7 @@ The RMSE scores obtained for each model is as follows. These are comparable beca
 
 Below are the graphs and results obtained from each of the models:
 
-# Regression
+### Regression
 
 The following metrics were found for each model used in our regression analysis. 
 
@@ -161,7 +161,7 @@ The following metrics were found for each model used in our regression analysis.
 
 {% include image.html url="\images\regression_results.png" description="Fig 5. Regression Model Analysis Table using Backward Elimination for subset selection. In the table, a star under a feature means it is included in the model on that row. The adjusted R2 statistic for each model is included in the table to aid evaluation." %}
 
-# K-NN
+### K-NN
 
 Performance of the K-NN model with tuned hyperparameters is shown in the figure below, and discussed later.
 
@@ -169,7 +169,7 @@ Performance of the K-NN model with tuned hyperparameters is shown in the figure 
 
 {% include image.html url="\images\knn_train.png" description="Fig 7. Testing and Training Accuracy vs. K." %}
 
-# Neural Network
+### Neural Network
 
 Performance of the NN model with tuned hyperparameters is shown in the figure below, and discussed later.
 
