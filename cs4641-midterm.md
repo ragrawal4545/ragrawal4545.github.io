@@ -77,7 +77,7 @@ From above, temperature appears highly correlated with FFMC, FMC, DC, ISI. DMC a
 
 Month appears to be correlated with the frequency of fires occurring and the acreage burned (Fig 0 (b)). The majority of the fires in the dataset occur during the summer months of August and September. These months also appear to produce fires that burn greater areas of land than the fires that occur in all other months. 
 
-{% include image.html url="\images\freq_fires_day.png" description="Fig 0 (c). Day appears to be correlated with the frequency of fires occurring and the acreage burned." %}
+{% include image.html url="\images\freq_fires_day.png" description="Fig 0 (c). Frequency of fires and damage, assessed by area burned, do not appear to vary significantly by day of the week. " %}
 
 Frequency of fires and damage, assessed by area burned, do not appear to vary significantly by day of the week. 
 
@@ -161,7 +161,9 @@ The following metrics were found for each model used in our regression analysis.
 
 {% include image.html url="\images\regression_table.png" description="Table 3. Results obtained for each regression model that used different features as used in the fire risk assessment task." %}
 
-{% include image.html url="\images\regression_results.png" description="Fig 5. Regression Model Analysis Table using Backward Elimination for subset selection. In the table, a star under a feature means it is included in the model on that row. The adjusted ![\Large R^2](https://latex.codecogs.com/svg.latex?R^2) statistic for each model is included in the table to aid evaluation." %}
+{% include image.html url="\images\regression_results.png" description="Fig 5. Regression Model Analysis Table using Backward Elimination for subset selection. A star under a feature means it is included in the model on that row. " %}
+
+In Fig. 5, we see analysis of the Regression Models using Backward Elimination for subset selection. The adjusted ![\Large R^2](https://latex.codecogs.com/svg.latex?R^2) statistic for each model is included in the table to aid evaluation.
 
 ### K-NN
 
