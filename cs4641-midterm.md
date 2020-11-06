@@ -5,7 +5,7 @@ permalink: /cs4641/midterm
 ---
 
 # Introduction
-![\Large R^2](https://latex.codecogs.com/svg.latex?\Large&space;R^2) 
+![\Large R^2](https://latex.codecogs.com/svg.latex?R^2) 
 In North America, at the end of September 2020, acres burned by wildfires exceeded the 10-year average by 1.3 million. Wildfires present many risks, including fatalities, property damage, secondary explosions at industrial plants, and environmental damage. As global warming accelerates, causing temperatures to rise and extreme weather events to occur more often, wildfires are becoming more frequent, intense, and costly. A pressing need exists to enhance risk assessment capabilities and predict attributes of wildfires to achieve better containment. Remote sensing data, as well as information about past wildfires, meteorological conditions, and vegetation, can be used to monitor, contain, and prevent wildfires as well as predict occurrences and probable paths.
 
 # Problem Definition 
